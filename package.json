@@ -1,0 +1,16 @@
+{
+  "name": "elm-astryx-admin-dashboard",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "copy:astryx": "node scripts/copy-astryx.mjs",
+    "build:elm": "elm make src/Main.elm --output=dist/elm.js",
+    "build": "npm run copy:astryx && npm run build:elm",
+    "dev": "npm run copy:astryx && elm reactor"
+  },
+  "dependencies": {
+    "@astryxdesign/core": "latest",
+    "@astryxdesign/theme-neutral": "latest",
+    "@stylexjs/stylex": "latest"
+  }
+}

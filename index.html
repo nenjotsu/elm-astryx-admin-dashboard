@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" data-astryx-theme="neutral">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Elm + Astryx admin dashboard example" />
+  <title>Elm + Astryx Admin</title>
+
+  <!-- Astryx cascade order -->
+  <link rel="stylesheet" href="dist/astryx-reset.css" />
+  <link rel="stylesheet" href="dist/astryx.css" />
+  <link rel="stylesheet" href="dist/astryx-theme.css" />
+
+  <link rel="stylesheet" href="styles/app.css" />
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="dist/elm.js"></script>
+  <script>
+    Elm.Main.init({
+      node: document.getElementById("app")
+    });
+  </script>
+</body>
+</html>
