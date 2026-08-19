@@ -231,6 +231,14 @@ navButton labelText path tab current =
                 "nav-item"
             )
         , href path
+        , attribute "data-route" path
+        , attribute "aria-current"
+            (if tab == current then
+                "page"
+
+             else
+                "false"
+            )
         ]
         [ span [ class "nav-dot" ] []
         , text labelText

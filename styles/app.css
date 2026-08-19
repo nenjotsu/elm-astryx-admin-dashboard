@@ -153,6 +153,7 @@
     color: var(--color-text-primary, #151515);
     text-align: left;
     text-decoration: none;
+    cursor: pointer;
   }
 
   .nav-item:hover {
