@@ -18,6 +18,13 @@ type Tab
     | Settings
 
 
+type Theme
+    = Light
+    | DarkGreen
+    | DarkPurple
+    | DarkOrange
+
+
 type alias Order =
     { id : Int
     , orderNo : String
@@ -38,6 +45,7 @@ type alias Model =
     , priority : Bool
     , orders : List Order
     , nextOrderNumber : Int
+    , theme : Theme
     }
 
 
@@ -51,6 +59,7 @@ type Msg
     | ProductChanged String
     | PriorityChanged Bool
     | CreateOrder
+    | SetTheme Theme
 
 
 main : Program () Model Msg
@@ -82,6 +91,7 @@ init _ url key =
         , { id = 1044, orderNo = "ORD-1044", customer = "Ava Martinez", product = "Blueberry Cheesecake", total = "$48.00", status = "Confirmed" }
         ]
     , nextOrderNumber = 1049
+    , theme = Light
     }
     , Cmd.none
     )
@@ -123,6 +133,9 @@ update msg model =
 
         PriorityChanged priority ->
             ( { model | priority = priority }, Cmd.none )
+
+        SetTheme theme ->
+            ( { model | theme = theme }, Cmd.none )
 
         CreateOrder ->
             if createFormValid model then
@@ -166,8 +179,8 @@ update msg model =
 view : Model -> Browser.Document Msg
 view model =
     { title = tabTitle model.activeTab ++ " | Astryx Bakery Admin"
-    , body = [ div [ class "app-shell" ]
-        [ topBar
+    , body = [ div [ class ("app-shell " ++ themeClass model.theme) ]
+        [ topBar model.theme
         , div [ class "page-shell" ]
             [ sidebar model
             , main_ [ class "main-content" ]
@@ -184,8 +197,8 @@ view model =
     }
 
 
-topBar : Html Msg
-topBar =
+topBar : Theme -> Html Msg
+topBar theme =
     header [ class "topbar" ]
         [ div [ class "brand" ]
             [ span [ class "brand-mark" ] [ text "A" ]
@@ -195,6 +208,12 @@ topBar =
                 ]
             ]
         , div [ class "topbar-spacer" ] []
+        , div [ class "theme-switcher", attribute "aria-label" "Color theme" ]
+            [ themeButton "Light" "☀" Light theme
+            , themeButton "Green" "" DarkGreen theme
+            , themeButton "Purple" "" DarkPurple theme
+            , themeButton "Orange" "" DarkOrange theme
+            ]
         , button [ class "icon-button", attribute "aria-label" "Notifications" ] [ text "◉" ]
         , div [ class "profile" ]
             [ div [ class "avatar" ] [ text "CA" ]
@@ -204,6 +223,44 @@ topBar =
                 ]
             ]
         ]
+
+
+themeButton : String -> String -> Theme -> Theme -> Html Msg
+themeButton labelText symbol option current =
+    button
+        [ class
+            (if option == current then
+                "theme-option active " ++ themeClass option
+
+             else
+                "theme-option " ++ themeClass option
+            )
+        , attribute "aria-label" ("Use " ++ labelText ++ " theme")
+        , attribute "title" labelText
+        , onClick (SetTheme option)
+        ]
+        [ if String.isEmpty symbol then
+            span [ class "theme-swatch" ] []
+
+          else
+            text symbol
+        ]
+
+
+themeClass : Theme -> String
+themeClass theme =
+    case theme of
+        Light ->
+            "theme-light"
+
+        DarkGreen ->
+            "theme-dark theme-green"
+
+        DarkPurple ->
+            "theme-dark theme-purple"
+
+        DarkOrange ->
+            "theme-dark theme-orange"
 
 
 sidebar : Model -> Html Msg

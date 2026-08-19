@@ -786,6 +786,10 @@
   .topbar {
     border-bottom-color: #e3e8e4;
     box-shadow: 0 1px 2px #17211b08;
+    background: rgba(255, 255, 255, .72);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    isolation: isolate;
   }
 
   .brand-mark {
@@ -841,5 +845,149 @@
   .modal-backdrop {
     background: #14231cb5;
     backdrop-filter: blur(3px);
+  }
+
+  .theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 3px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-background-surface) 72%, transparent);
+  }
+
+  .theme-option {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+  }
+
+  .theme-option:hover,
+  .theme-option.active {
+    background: var(--color-background-surface-secondary);
+  }
+
+  .theme-option.active {
+    box-shadow: inset 0 0 0 1px var(--color-border);
+  }
+
+  .theme-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #3d7658;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px #17211b22;
+  }
+
+  .theme-option.theme-purple .theme-swatch { background: #8b5cf6; }
+  .theme-option.theme-orange .theme-swatch { background: #f08a3c; }
+
+  .app-shell.theme-dark {
+    --color-background-body: #101411;
+    --color-background-surface: #171d19;
+    --color-background-surface-hover: #202822;
+    --color-background-surface-secondary: #1d2520;
+    --color-background-inverted: #eef5f0;
+    --color-text-primary: #eef5f0;
+    --color-text-secondary: #9eaaa2;
+    --color-text-inverted: #121713;
+    --color-border: #2d3831;
+    --color-border-emphasized: var(--dark-accent);
+    --color-blue-subtle: var(--dark-accent-soft);
+    --color-blue-vivid: var(--dark-accent);
+    --color-text-success: var(--dark-accent);
+    --shadow-low: 0 1px 2px #00000030, 0 12px 32px #00000024;
+    --shadow-high: 0 25px 70px #00000080;
+    min-height: 100vh;
+    background: var(--color-background-body);
+    color: var(--color-text-primary);
+  }
+
+  .app-shell.theme-green {
+    --dark-accent: #72d59b;
+    --dark-accent-strong: #45a66c;
+    --dark-accent-soft: #1c3928;
+  }
+
+  .app-shell.theme-purple {
+    --dark-accent: #b89aff;
+    --dark-accent-strong: #8b5cf6;
+    --dark-accent-soft: #30264a;
+  }
+
+  .app-shell.theme-orange {
+    --dark-accent: #ffad6e;
+    --dark-accent-strong: #f08a3c;
+    --dark-accent-soft: #422b1d;
+  }
+
+  .theme-dark .topbar {
+    border-bottom-color: #ffffff14;
+    background: rgba(18, 23, 19, .74);
+    box-shadow: 0 1px 0 #ffffff08;
+  }
+
+  .theme-dark .brand-mark {
+    background: var(--dark-accent);
+    color: #111612;
+  }
+
+  .theme-dark .sidebar,
+  .theme-dark .panel,
+  .theme-dark .stat-card,
+  .theme-dark .product-card,
+  .theme-dark .modal,
+  .theme-dark .field input,
+  .theme-dark .search-field,
+  .theme-dark .secondary-button {
+    border-color: var(--color-border);
+    background-color: var(--color-background-surface);
+    color: var(--color-text-primary);
+  }
+
+  .theme-dark .nav-item { color: var(--color-text-secondary); }
+  .theme-dark .nav-item:hover { background: var(--color-background-surface-hover); }
+  .theme-dark .nav-item.active {
+    background: var(--dark-accent-soft);
+    color: var(--dark-accent);
+    box-shadow: inset 3px 0 var(--dark-accent);
+  }
+  .theme-dark .nav-dot,
+  .theme-dark .order-number,
+  .theme-dark .product-price { color: var(--dark-accent); }
+  .theme-dark .primary-button {
+    border-color: var(--dark-accent-strong);
+    background: var(--dark-accent-strong);
+    color: #fff;
+    box-shadow: 0 5px 18px color-mix(in srgb, var(--dark-accent) 22%, transparent);
+  }
+  .theme-dark .primary-button:hover:not(:disabled) { filter: brightness(1.1); }
+  .theme-dark .progress-fill { background: var(--dark-accent); }
+  .theme-dark .data-table th { background: var(--color-background-surface-secondary); }
+  .theme-dark .data-table td { border-color: var(--color-border); }
+  .theme-dark .data-table tbody tr:hover { background: var(--color-background-surface-hover); }
+  .theme-dark .product-visual { background: linear-gradient(145deg, #202822, var(--dark-accent-soft)); }
+  .theme-dark .product-badge,
+  .theme-dark .status-success { border-color: var(--dark-accent-strong); background: var(--dark-accent-soft); color: var(--dark-accent); }
+  .theme-dark .field input:focus,
+  .theme-dark .search-field:focus-within { border-color: var(--dark-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--dark-accent) 18%, transparent); }
+  .theme-dark .checkbox-row input { accent-color: var(--dark-accent-strong); }
+
+  @media (max-width: 700px) {
+    .theme-switcher { margin-left: auto; }
+    .icon-button { display: none; }
+  }
+
+  @media (max-width: 460px) {
+    .theme-option { width: 27px; height: 27px; }
+    .brand-name { font-size: 13px; }
+    .profile { display: none; }
   }
 }
