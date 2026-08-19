@@ -309,7 +309,7 @@ pageHeader tab =
             [ h1 [] [ text (tabTitle tab) ]
             , p [] [ text (tabDescription tab) ]
             ]
-        , button [ class "primary-button", onClick OpenCreateModal ]
+        , button [ class "primary-button", attribute "data-view-transition" "modal", onClick OpenCreateModal ]
             [ span [] [ text "Create order" ]
             , span [ class "button-plus" ] [ text "+" ]
             ]
@@ -775,6 +775,7 @@ createOrderModal model =
         [ button
             [ class "modal-backdrop"
             , attribute "aria-label" "Close modal"
+            , attribute "data-view-transition" "modal"
             , onClick CloseCreateModal
             ]
             []
@@ -789,7 +790,7 @@ createOrderModal model =
                     [ span [ class "eyebrow" ] [ text "NEW ORDER" ]
                     , h2 [ id "create-order-title" ] [ text "Create bakery order" ]
                     ]
-                , button [ class "close-button", onClick CloseCreateModal, attribute "aria-label" "Close" ] [ text "×" ]
+                , button [ class "close-button", onClick CloseCreateModal, attribute "aria-label" "Close", attribute "data-view-transition" "modal" ] [ text "×" ]
                 ]
             , div [ class "modal-content" ]
                 [ textField "customer" "Customer name" "Emma Johnson" model.customerName CustomerChanged
@@ -803,7 +804,7 @@ createOrderModal model =
                     ]
                 ]
             , div [ class "modal-footer" ]
-                [ button [ class "secondary-button", onClick CloseCreateModal ] [ text "Cancel" ]
+                [ button [ class "secondary-button", attribute "data-view-transition" "modal", onClick CloseCreateModal ] [ text "Cancel" ]
                 , button
                     [ class "primary-button"
                     , disabled (not (createFormValid model))

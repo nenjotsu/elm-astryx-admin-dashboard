@@ -21,6 +21,23 @@
     Elm.Main.init({
       node: document.getElementById("app")
     });
+
+    // Progressively enhance Elm state changes with the browser View Transitions API.
+    // Re-dispatching the click inside the update callback lets the browser capture
+    // the modal before and after Elm updates its virtual DOM.
+    let replayingTransitionClick = false;
+    document.addEventListener("click", (event) => {
+      const trigger = event.target.closest("[data-view-transition='modal']");
+      if (!trigger || replayingTransitionClick || !document.startViewTransition) return;
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      document.startViewTransition(() => {
+        replayingTransitionClick = true;
+        trigger.click();
+        replayingTransitionClick = false;
+      });
+    }, true);
   </script>
 </body>
 </html>

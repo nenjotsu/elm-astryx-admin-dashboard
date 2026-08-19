@@ -75,7 +75,7 @@ elm reactor
 Open:
 
 ```text
-http://localhost:8000/index.html
+http://localhost:3000/index.html
 ```
 
 ## Project structure
