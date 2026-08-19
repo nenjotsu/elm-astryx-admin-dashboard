@@ -6,7 +6,7 @@
     "copy:astryx": "node scripts/copy-astryx.mjs",
     "build:elm": "elm make src/Main.elm --output=dist/elm.js",
     "build": "npm run copy:astryx && npm run build:elm",
-    "dev": "npm run copy:astryx && elm reactor"
+    "dev": "npm run copy:astryx && elm reactor --port=3000"
   },
   "dependencies": {
     "@astryxdesign/core": "latest",

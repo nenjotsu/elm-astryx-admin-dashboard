@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700&display=swap');
+
 @layer app {
   :root {
     color-scheme: light;
@@ -741,5 +743,103 @@
       width: 100%;
       justify-content: center;
     }
+  }
+}
+
+/* Chefstack theme layer: visual tokens only; Astryx base and dashboard layout remain intact. */
+@layer app {
+  :root {
+    --font-family-body: 'DM Sans', sans-serif;
+    --font-family-heading: 'Manrope', sans-serif;
+    --font-family-code: 'DM Sans', sans-serif;
+
+    --color-background-body: #f4f6f4;
+    --color-background-surface: #ffffff;
+    --color-background-surface-hover: #f7f9f7;
+    --color-background-surface-secondary: #f7f9f7;
+    --color-background-inverted: #14231c;
+    --color-text-primary: #17211b;
+    --color-text-secondary: #67716b;
+    --color-text-inverted: #ffffff;
+    --color-border: #e3e8e4;
+    --color-border-emphasized: #28543d;
+    --color-blue-subtle: #eaf3ed;
+    --color-blue-vivid: #3d7658;
+    --color-text-success: #3d7658;
+    --color-text-warning: #9a6a06;
+    --radius-element: 9px;
+    --radius-container: 14px;
+    --shadow-low: 0 1px 2px #17211b0a, 0 10px 30px #17211b0a;
+    --shadow-high: 0 25px 70px #00000038;
+  }
+
+  .page-header h1,
+  .panel-header h2,
+  .orders-toolbar h2,
+  .product-card h2,
+  .modal h2,
+  .stat-value,
+  .product-price {
+    font-family: var(--font-family-heading);
+  }
+
+  .topbar {
+    border-bottom-color: #e3e8e4;
+    box-shadow: 0 1px 2px #17211b08;
+  }
+
+  .brand-mark {
+    background: #14231c;
+    color: #dbf06c;
+  }
+
+  .nav-item.active {
+    box-shadow: inset 3px 0 #3d7658;
+  }
+
+  .nav-dot {
+    color: #3d7658;
+  }
+
+  .primary-button {
+    border-color: #28543d;
+    background: #28543d;
+    box-shadow: 0 5px 14px #28543d24;
+  }
+
+  .primary-button:hover:not(:disabled) {
+    background: #1f4633;
+  }
+
+  .stat-card,
+  .panel,
+  .product-card {
+    box-shadow: var(--shadow-low);
+  }
+
+  .progress-fill {
+    background: #3d7658;
+  }
+
+  .product-visual {
+    background: linear-gradient(145deg, #f7f9f7, #eaf3ed);
+  }
+
+  .product-badge {
+    border: 1px solid #cee1d3;
+  }
+
+  .field input:focus {
+    border-color: #3d7658;
+    box-shadow: 0 0 0 3px #3d76581a;
+  }
+
+  .checkbox-row input {
+    accent-color: #3d7658;
+  }
+
+  .modal-backdrop {
+    background: #14231cb5;
+    backdrop-filter: blur(3px);
   }
 }
